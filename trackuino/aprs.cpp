@@ -23,7 +23,11 @@
 #include "sensors_pic32.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <WProgram.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif
 
 // Module functions
 float meters_to_feet(float m)

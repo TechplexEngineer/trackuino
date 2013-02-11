@@ -31,9 +31,16 @@
 #include "config.h"
 #include "afsk_avr.h"
 #include "afsk_pic32.h"
-#include "pin.h"
+
 #include "radio_hx1.h"
-#include <WProgram.h>
+
+
+#include "pin.h"
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif
 #include <stdint.h>
 
 // Module consts
@@ -51,13 +58,13 @@ volatile static unsigned int phase_delta;                // 1200/2200 for standa
 volatile static unsigned int phase;                      // Fixed point 9.7 (2PI = TABLE_SIZE)
 volatile static unsigned int packet_pos;                 // Next bit to be sent out
 #ifdef DEBUG_MODEM
-volatile static int overruns = 0;
-volatile static uint32_t isr_calls = 0;
-volatile static uint32_t avg_isr_time = 0;
-volatile static uint16_t fast_isr_time = 65535;
-volatile static uint16_t slow_isr_time = 0;
-volatile static unsigned int slow_packet_pos;
-volatile static unsigned char slow_sample_in_baud;
+  volatile static int overruns = 0;
+  volatile static uint32_t isr_calls = 0;
+  volatile static uint32_t avg_isr_time = 0;
+  volatile static uint16_t fast_isr_time = 65535;
+  volatile static uint16_t slow_isr_time = 0;
+  volatile static unsigned int slow_packet_pos;
+  volatile static unsigned char slow_sample_in_baud;
 #endif
 
 // The radio (class defined in config.h)

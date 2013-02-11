@@ -26,7 +26,11 @@
 #include "config.h"
 #include "pin.h"
 #include "sensors_pic32.h"
-#include <WProgram.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif
 
 void sensors_setup()
 {

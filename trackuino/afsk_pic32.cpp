@@ -20,7 +20,11 @@
 #include "pin.h"
 #include <p32xxxx.h>
 #include <plib.h>
-#include <WProgram.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif
 
 #if AUDIO_PIN == 3
 #  define OCxRS OC1RS

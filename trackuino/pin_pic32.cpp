@@ -19,7 +19,11 @@
 #include "pin.h"
 #include <plib.h>
 #include <stdint.h>
-#include <WProgram.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+  #include <Arduino.h>
+#else
+  #include <WProgram.h>
+#endif
 
 // This is a digitalWrite() replacement that does not disrupt
 // timer 2.

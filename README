@@ -1,6 +1,8 @@
 How to compile the Trackuino firmware:
 --------------------------------------
 
+## With the Arduino IDE
+
 1. Copy the "trackuino" folder into your Arduino sketches folder.
 
 2. Launch the Arduino IDE and open up the sketch. You need version 23 of the
@@ -15,4 +17,18 @@ error.
 Stay up-to-date at:
 
 http://code.google.com/p/trackuino
+
+## With Make
+
+1. Locate the "config.h" tab and replace settings with your own (YOUR CALLSIGN GOES THERE).
+
+2. In the trackuino folder, run `$ make`
+
+3. Before uploading the firmware, unplug the GPS or flashing will fail with an error.
+
+4. Run `$ make upload` to put the compiled code on the arduino.
+
+Done!
+
+
 
