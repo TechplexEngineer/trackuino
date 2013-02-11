@@ -1,7 +1,7 @@
 #http://ed.am/posts/using-an-external-editor-for-arduino-development
 
 BOARD = uno
-include /usr/local/lib/avr/arduino.mk
+include ../arduino.mk
 
 #To compile type `$ make`
 
