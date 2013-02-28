@@ -54,7 +54,6 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(0,1);
 
 #if defined(ARDUINO) && ARDUINO >= 100
   #include <Arduino.h>
@@ -75,27 +74,30 @@ void setup()
   pinMode(LED_PIN, OUTPUT);
   pin_write(LED_PIN, LOW);
 
-mySerial.begin(9600);
-mySerial.print("Ohai");
 
-  Serial.begin(GPS_BAUDRATE);
+
+ Serial.begin(GPS_BAUDRATE);
 #ifdef DEBUG_RESET
-  Serial.println("RESET");
+Serial.println("RESET");
 #endif
 
   buzzer_setup();
+  Serial.println("buzzer");
   afsk_setup();
+  Serial.println("afsk");
   gps_setup();
+  Serial.println("gps");
   sensors_setup();
+  Serial.println("sensors");
 
-#ifdef DEBUG_SENS
+
   Serial.print("Ti=");
   Serial.print(sensors_int_lm60());
   Serial.print(", Te=");
   Serial.print(sensors_ext_lm60());
   Serial.print(", Vin=");
   Serial.println(sensors_vin());
-#endif
+
 
   // Do not start until we get a valid time reference
   // for slotted transmissions.
@@ -136,6 +138,9 @@ void get_pos()
 
 void loop()
 {
+
+  Serial.print(gps_decode(Serial.read()));
+  Serial.print("wut");
   // Time for another APRS frame
   if ((int32_t) (millis() - next_aprs) >= 0) {
     get_pos();
