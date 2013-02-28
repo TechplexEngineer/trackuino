@@ -52,6 +52,9 @@
 
 // Arduino/AVR libs
 #include <Wire.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial mySerial(0,1);
 
 #if defined(ARDUINO) && ARDUINO >= 100
   #include <Arduino.h>
@@ -71,6 +74,9 @@ void setup()
 {
   pinMode(LED_PIN, OUTPUT);
   pin_write(LED_PIN, LOW);
+
+mySerial.begin(9600);
+mySerial.print("Ohai");
 
   Serial.begin(GPS_BAUDRATE);
 #ifdef DEBUG_RESET
