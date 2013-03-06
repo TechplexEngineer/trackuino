@@ -101,7 +101,7 @@ Serial.println("RESET");
 
   // Do not start until we get a valid time reference
   // for slotted transmissions.
-  if (APRS_SLOT >= 0) {
+  /*if (APRS_SLOT >= 0) {
     do {
       while (! Serial.available())
         power_save();
@@ -112,7 +112,9 @@ Serial.println("RESET");
   }
   else {
     next_aprs = millis();
-  }  
+  }  */
+
+  Serial.println("test");
   // TODO: beep while we get a fix, maybe indicating the number of
   // visible satellites by a series of short beeps?
 }
@@ -139,10 +141,12 @@ void get_pos()
 void loop()
 {
 
-  Serial.print(gps_decode(Serial.read()));
-  Serial.print("wut");
+  //Serial.println(gps_decode(Serial.read()));
+  //get_pos();
+  //aprs_send();
+  //delay(100000);
   // Time for another APRS frame
-  if ((int32_t) (millis() - next_aprs) >= 0) {
+  /*if ((int32_t) (millis() - next_aprs) >= 0) {
     get_pos();
     aprs_send();
     next_aprs += APRS_PERIOD * 1000L;
@@ -155,5 +159,5 @@ void loop()
 #endif
   }
 
-  power_save(); // Incoming GPS data or interrupts will wake us up
+  power_save(); // Incoming GPS data or interrupts will wake us up*/
 }
