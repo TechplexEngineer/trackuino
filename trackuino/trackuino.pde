@@ -53,6 +53,8 @@
 // Arduino/AVR libs
 #include <Wire.h>
 #include <SoftwareSerial.h>
+#include <SD.h>
+
 
 
 #if defined(ARDUINO) && ARDUINO >= 100
@@ -74,7 +76,11 @@ void setup()
   pinMode(LED_PIN, OUTPUT);
   pin_write(LED_PIN, LOW);
 
-
+  pinMode(SD_CHIP_SEL, OUTPUT);
+  if (!SD.begin(SD_CHIP_SEL)) {
+    Serial.println("Card failed, or not present");
+  }
+  Serial.println("card initialized.");
 
  Serial.begin(GPS_BAUDRATE);
 #ifdef DEBUG_RESET
@@ -154,6 +160,22 @@ void loop()
     // Show modem ISR stats from the previous transmission
     afsk_debug();
 #endif
+  }
+  File dataFile = SD.open("blake.txt", FILE_WRITE);
+  if (dataFile) 
+  {
+    int timeStamp = millis();
+    dataFile.print(timeStamp);
+    dataFile.print(", ");
+    dataFile.print(gps_time);
+    dataFile.print(", ");
+    dataFile.println();
+    dataFile.print(gps_altitude);
+    dataFile.close();
+  }
+  else
+  {
+    Serial.println("error opening datalog.txt");
   }
 
   power_save(); // Incoming GPS data or interrupts will wake us up*/

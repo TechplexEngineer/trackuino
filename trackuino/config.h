@@ -39,7 +39,7 @@
 // - Cars:       9
 // - Home:       0
 // - IGate:      5
-#define S_CALLSIGN      "KB1WZE"
+#define S_CALLSIGN      "W1YA"
 #define S_CALLSIGN_ID   11
 
 // Destination callsign: APRS (with SSID=0) is usually okay.
@@ -56,9 +56,10 @@
 // APRS comment: this goes in the comment portion of the APRS message. You
 // might want to keep this short. The longer the packet, the more vulnerable
 // it is to noise. 
-#define APRS_COMMENT    "Trackuino test"
+#define APRS_COMMENT    "UMHAB"
 
-
+//SPI Chip Select for SD Card
+#define SD_CHIP_SEL		8
 // --------------------------------------------------------------------------
 // AX.25 config (ax25.cpp)
 // --------------------------------------------------------------------------
